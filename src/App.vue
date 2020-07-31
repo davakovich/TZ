@@ -2,38 +2,33 @@
 	<div id="app">
 		<h1>Записи сотрудников</h1>
 		<hr/>
-		<passport v-bind:sotr="sotr"/>
+		<passport/>
 	</div>
 </template>
 
 <script>
 	import passport from "./components/passport";
-	let methods = {
-		localGet: function(key){
+		export function localGet(key){
+			JSON.parse(localStorage.getItem(key))
 		return JSON.parse(localStorage.getItem(key))
-	},
-	localSet: function(key,val){
+	}
+	export function localSet(key,val){
 		return localStorage.setItem(key, JSON.stringify(val))
 	}
-	};
-	let sotr
-	if (methods.localGet("Massotr") != null)
-		sotr = methods.localGet("Massotr")
-	else {
-		sotr = [
+	export function localRemove(key){
+			return localStorage.removeItem(key)
+	}
+	let emp_mas
+	if (localGet("staff") == null)
+	{
+		emp_mas = [
 			["Иванов Иван Иванович", "4142", "312414", "2000-03-21"],
 			["Лаврентьев Дмитрий Иванович", "3124", "123412", "2000-04-22"]
 		]
-		methods.localSet("Massotr",sotr)
+		localSet("staff",emp_mas)
 	}
 	export default {
 		name: "App",
-		data() {
-			return {
-				sotr,
-				methods
-			}
-		},
 		components: {
 			passport,
 		}

@@ -1,7 +1,7 @@
 <template>
 	<li>
         <span>
-            <strong v-on:click="$emit('filler',sotr[0])">{{sotr[0]}}</strong>
+            <strong v-on:click="$emit('filler',emp_mas[0])">{{emp_mas[0]}}</strong>
         </span>
 	</li>
 
@@ -10,7 +10,7 @@
 <script>
 	export default {
 		props: {
-			sotr: {}
+			emp_mas: {}
 		}
 	}
 </script>
