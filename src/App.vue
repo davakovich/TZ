@@ -1,13 +1,16 @@
 <template>
-	<div id="app">
+	<v-app v-bind:style="{ background: $vuetify.theme.themes.dark.background}">
 		<h1>Записи сотрудников</h1>
 		<hr/>
 		<passport/>
-	</div>
+	</v-app>
 </template>
 
 <script>
-	import passport from "./components/passport";
+	import passport from "./components/passport"
+	import vuetify from "vuetify"
+	vuetify.dark = true
+
 		export function localGet(key){
 			JSON.parse(localStorage.getItem(key))
 		return JSON.parse(localStorage.getItem(key))
@@ -27,12 +30,13 @@
 		]
 		localSet("staff",emp_mas)
 	}
-	export default {
+	export default{
 		name: "App",
 		components: {
-			passport,
-		}
+			passport
+		},
 	}
+
 </script>
 
 <style>

@@ -47,31 +47,34 @@
 				</span>
 			</v-form>
 		</div>
-		<div
-				class="Stafflist"
-				@submit.prevent="Onsubmit"
-		>
-			<ul>
-				<v-btn
-						class="button"
-						v-on:click="addStaff"
-				>+
-				</v-btn>
-				<p></p>
-				<Informat
+		<v-btn
+				class="button"
+				v-on:click="addStaff"
+		>+
+		</v-btn>
+		<v-container>
+			<v-col
+					offset-xl=""
+					align-self="start"
+			>
+				<v-card
 						v-for="emp_mas of emp_mas"
 						:emp_mas="emp_mas"
 						:key="emp_mas[0]"
-						v-on:filler="fillerStaff"
+						v-on:click="fillerStaff(emp_mas[0])"
 						v-on:addStaff="addStaff"
 						v-on:delStaff="delStaff"
-				/>
-			</ul>
-		</div>
+						class="pa-2"
+						style="height: 30px"
+						outlined
+						tile
+
+				>{{emp_mas[0]}}</v-card>
+			</v-col>
+		</v-container>
 	</div>
 </template>
 <script>
-	import Informat from "./Informat";
 	import { localGet } from "../App";
 	import { localSet } from "../App";
 	import { localRemove } from "../App";
@@ -88,9 +91,6 @@
 				delete_btn: "Удалить",
 				emp_mas: localGet("staff")
 			}
-		},
-		components: {
-			Informat
 		},
 		methods: {
 			delStaff() {
